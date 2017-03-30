@@ -1,0 +1,43 @@
+<template name="notifications">
+    <!-- main col left -->
+    <div class="wrapper">
+        <div class="box">
+            <div class="row row-offcanvas row-offcanvas-left">
+                <!-- sidebar -->
+                {{>sidebar}}
+                <!-- /sidebar -->
+                <!-- main right col -->
+                <div class="column col-sm-10 col-xs-11" id="main">
+                    <!-- top nav -->
+                    {{>topnav}}
+                    <!-- /top nav -->
+                    <div class="padding">
+                        <div class="full col-sm-9">
+                            <!-- content -->
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    {{#each friendRequests}}
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <p><img src="{{friendPicture this.requester}}" class="img-circle pull-right"> <a href="#">{{friendName this.requester}}</a></p>
+                                                <div class="clearfix"></div>
+                                                <hr>
+                                                <address>
+                                                    <strong>{{friendUsername this.requester}}</strong><br>
+                                                    {{friendAddress this.requester 0}}<br>
+                                                    {{friendAddress this.requester 1}}<br>
+                                                </address>
+                                                <button class="btn btn-primary accept">Accept Friend Request</button>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /main -->
+            </div>
+        </div>
+    </div>
+</template>

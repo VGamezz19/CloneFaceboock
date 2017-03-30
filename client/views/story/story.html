@@ -1,0 +1,35 @@
+<template name="story">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {{#if status}}
+                <h4> <a href="/profile/{{creatorUsername}}"><img src="{{userImage}}" width="28px;" height="28px;"> {{creatorName}} </a></h4>
+            {{else}}
+                <h4>
+                    <a href="/profile/{{creatorUsername}}">
+                        <img src="{{creatorThumbnail}}" alt="" width="28px;" height="28px;">
+                        {{creatorName}}
+                    </a>
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    <a href="/profile/{{createdForUsername}}">
+                        <img src="{{createdForThumbnail}}" alt="" width="28px;" height="28px;">
+                        {{createdForName}}
+                    </a>
+                </h4>
+            {{/if}}
+        </div>
+        <div class="panel-body">
+            <h4>
+                {{storyText}}</h4>
+            <div class="clearfix"></div>
+            <form>
+                <label>{{likeCount _id}}</label>
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default like">+1</button>
+                    </div>
+                    <input class="form-control" placeholder="Add a comment.." type="text">
+                </div>
+            </form>
+        </div>
+    </div>
+</template>

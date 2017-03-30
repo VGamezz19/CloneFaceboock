@@ -1,0 +1,49 @@
+<template name="profileFeed">
+    <div class="wrapper">
+        <div class="box">
+            <div class="row row-offcanvas row-offcanvas-left">
+                <!-- sidebar -->
+                {{>sidebar}}
+                <!-- /sidebar -->
+                <!-- main right col -->
+                <div class="column col-sm-10 col-xs-11" id="main">
+                    <!-- top nav -->
+                    {{>topnav}}
+                    <!-- /top nav -->
+                    <div class="padding">
+                        <div class="full col-sm-9">
+                            <!-- content -->
+                            <div class="row">
+                                {{>profileDetails}}
+                                <!-- main col right -->
+                                <div class="col-sm-7">
+
+                                    <div class="well">
+                                        <form class="form-horizontal" role="form">
+                                            <h4>What's New</h4>
+                                            <div class="form-group" style="padding:14px;">
+                                                <textarea class="form-control" name="new-post" placeholder="{{statusPlaceholder}}"></textarea>
+                                            </div>
+                                            <button class="btn btn-primary pull-right new-post" type="button">Post</button>
+                                            <ul class="list-inline">
+                                                <li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li>
+                                                <li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li>
+                                                <li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li>
+                                            </ul>
+                                        </form>
+                                    </div>
+                                    {{#each stories}}
+                                        {{>story this}}
+                                    {{/each}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /main -->
+            </div>
+        </div>
+    </div>
+    {{>modal}}
+</template>
