@@ -1,10 +1,13 @@
 Template.modal.events({
-    'click .new-post':function(e){
+    'click .new-postModal':function(e){
+
         e.preventDefault();
         var profileUser = Meteor.user();
         var currentUser = Meteor.user();
-        var story = $('textarea[name="new-post"]').val();
-        if(story.length) {
+        var story = $('textarea[name="new-postModal"]').val();
+        console.log(story);
+        if(story.length > 0) {
+          console.log(story);
             Stories.insert({
                 createdBy: currentUser._id,
                 createdFor: profileUser._id,
@@ -21,7 +24,7 @@ Template.modal.events({
                 createdAt: new Date(),
                 comments: []
             });
-            $('textarea[name="new-post"]').val("");
+            $('textarea[name="new-postModal"]').val("");
         }
 
     }
