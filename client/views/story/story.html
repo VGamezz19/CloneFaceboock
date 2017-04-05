@@ -1,20 +1,37 @@
 <template name="story">
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading row">
             {{#if status}}
-                <h4> <a href="/profile/{{creatorUsername}}"><img src="{{userImage}}" width="28px;" height="28px;"> {{creatorName}} </a></h4>
+            <div class ="col-md-11 col-lg-11">
+              <h4>
+                <a href="/profile/{{creatorUsername}}"><img src="{{userImage}}" width="28px;" height="28px;"> {{creatorName}} </a>
+              </h4>
+            </div>
+            {{#if ownerStory}}
+            <div class ="col-md-1 col-lg-1">
+              <a type="button" class="delete-story fi glyphicon glyphicon-remove"></a>
+            </div>
+            {{/if}}
             {{else}}
-                <h4>
-                    <a href="/profile/{{creatorUsername}}">
-                        <img src="{{creatorThumbnail}}" alt="" width="28px;" height="28px;">
-                        {{creatorName}}
-                    </a>
-                    <span class="glyphicon glyphicon-arrow-right"></span>
-                    <a href="/profile/{{createdForUsername}}">
-                        <img src="{{createdForThumbnail}}" alt="" width="28px;" height="28px;">
-                        {{createdForName}}
-                    </a>
-                </h4>
+            <div class ="col-md-11 col-lg-11">
+              <h4>
+                  <a href="/profile/{{creatorUsername}}">
+                      <img src="{{creatorThumbnail}}" alt="" width="28px;" height="28px;">
+                      {{creatorName}}
+                  </a>
+                  <span class="glyphicon glyphicon-arrow-right"></span>
+                  <a href="/profile/{{createdForUsername}}">
+                      <img src="{{createdForThumbnail}}" alt="" width="28px;" height="28px;">
+                      {{createdForName}}
+                  </a>
+              </h4>
+            </div>
+            {{#if ownerStory}}
+            <div class ="col-md-1 col-lg-1">
+              <a type="button" class="delete-story fi glyphicon glyphicon-remove"></a>
+            </div>
+            {{/if}}
+
             {{/if}}
         </div>
         <div class="panel-body">

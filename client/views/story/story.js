@@ -1,3 +1,5 @@
+
+
 Template.story.events({
     'click .like':function(e) {
         e.preventDefault();
@@ -10,12 +12,21 @@ Template.story.events({
         } else {
             Stories.update({_id: story._id}, {$pull:{likes:likeData}});
         }
+    },
+    'click .delete-story':function(e){
+      e.preventDefault();
+      var story = Blaze.getData(e.currentTarget);
+      console.log(story);
+      Stories.remove(story._id);
     }
 })
 
 Template.story.helpers({
     status:function(){
         return this.createdFor === this.createdBy;
+    },
+    ownerStory:function(){
+        return this.createdBy === Meteor.userId();
     },
     likeCount:function(storyId){
         var story = Stories.findOne({_id: storyId});
