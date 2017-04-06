@@ -15,7 +15,7 @@ Template.profileFeed.events({
         var currentUser = Meteor.user();
         var story = $('textarea[name="new-post"]').val();
         if(story.length) {
-          console.log("gola2");
+          
             Stories.insert({
                 createdBy: currentUser._id,
                 createdFor: profileUser._id,

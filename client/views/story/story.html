@@ -38,15 +38,30 @@
             <h4>
                 {{storyText}}</h4>
             <div class="clearfix"></div>
-            <form>
+
                 <label>{{likeCount _id}}</label>
                 <div class="input-group">
                     <div class="input-group-btn">
                         <button class="btn btn-default like">+1</button>
                     </div>
-                    <input class="form-control" placeholder="Add a comment.." type="text">
+                    <form  class ="comment-story">
+                      <input class="form-control" name ="text" placeholder="Add a comment.." type="text">
+                    </form>
+
                 </div>
-            </form>
+                {{#each comments}}
+                    {{>commentTemaplte}}
+                {{/each}}
+
+
         </div>
     </div>
+</template>
+
+<template name ="commentTemaplte">
+  <div class ="row">
+    <div class ="col-md-8 col-lg-8"><h4>{{commentText}}</h4></div>
+    <div class ="col-md-4 col-lg-4">{{commentDate}}</div>
+  </div>
+
 </template>

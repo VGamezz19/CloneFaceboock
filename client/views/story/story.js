@@ -16,9 +16,54 @@ Template.story.events({
     'click .delete-story':function(e){
       e.preventDefault();
       var story = Blaze.getData(e.currentTarget);
-      console.log(story);
+      //console.log(story);
       Stories.remove(story._id);
+    },
+    'submit .comment-story':function(event){
+      event.preventDefault();
+
+      const target = event.target;
+      const commentText = target.text.value;
+
+      var story = Blaze.getData(event.currentTarget);
+
+      //Add in Collection Stories a nes atribue, "Comment"
+      if (commentText){
+        Stories.update({_id: story._id}, {$push:{comments: {
+                                                             commentText: commentText,
+                                                             commentDate: new Date(),
+                                                             owner: Meteor.userId()
+                                                          }}});
+
+      }
+      target.text.value = '';
+
     }
+
+    /*
+
+
+
+
+    Template.body.events({
+      'submit .new-task'(event) {
+        // Prevent default browser form submit
+        event.preventDefault();
+
+        // Get value from form element
+        const target = event.target;
+        const text = target.text.value;
+
+        // Insert a task into the collection
+        Tasks.insert({
+          text,
+          createdAt: new Date(), // current time
+        });
+
+        // Clear form
+        target.text.value = '';
+      },
+    */
 })
 
 Template.story.helpers({
@@ -28,6 +73,12 @@ Template.story.helpers({
     ownerStory:function(){
         return this.createdBy === Meteor.userId();
     },
+    /*commentStory:function(e){
+      var story = Blaze.getData(e.currentTarget);
+      var story = Stories.findOne({_id: storyId});
+      console.log("comment");
+      return story;
+    }*/
     likeCount:function(storyId){
         var story = Stories.findOne({_id: storyId});
         var likes = story.likes;
@@ -59,4 +110,5 @@ Template.story.helpers({
         }
 
     }
+
 })
