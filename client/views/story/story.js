@@ -29,41 +29,28 @@ Template.story.events({
 
       //Add in Collection Stories a nes atribue, "Comment"
       if (commentText){
+        //El creador del commentario
+        var userOwner = Meteor.user();
+
         Stories.update({_id: story._id}, {$push:{comments: {
-                                                             commentText: commentText,
-                                                             commentDate: new Date(),
-                                                             owner: Meteor.userId()
-                                                          }}});
+                                                   commentText: commentText,
+                                                   commentDate: new Date(),
+                                                   owner: Meteor.userId(),
+                                                   idStory : story._id,
+                                                   userImageComment : userOwner.profile.picture.thumbnail,
+                                                   creatorNameComment : userOwner.profile.name.first,
+
+
+                                                }}});
+        //for order comments
+        Stories.update({_id: story._id},{$push:{comments:{$each:[],$sort: {"commentDate": -1}} }},{'multi':true});
 
       }
       target.text.value = '';
 
     }
 
-    /*
 
-
-
-
-    Template.body.events({
-      'submit .new-task'(event) {
-        // Prevent default browser form submit
-        event.preventDefault();
-
-        // Get value from form element
-        const target = event.target;
-        const text = target.text.value;
-
-        // Insert a task into the collection
-        Tasks.insert({
-          text,
-          createdAt: new Date(), // current time
-        });
-
-        // Clear form
-        target.text.value = '';
-      },
-    */
 })
 
 Template.story.helpers({
@@ -79,6 +66,10 @@ Template.story.helpers({
       console.log("comment");
       return story;
     }*/
+    datestory:function(date) {
+      return moment(date).format('MM-DD-YYYY HH:mm');
+    },
+
     likeCount:function(storyId){
         var story = Stories.findOne({_id: storyId});
         var likes = story.likes;
@@ -111,4 +102,34 @@ Template.story.helpers({
 
     }
 
+})
+
+Template.commentTemaplte.events({
+  'click .delete-comment':function(e){
+    e.preventDefault();
+    var comment = Blaze.getData(e.currentTarget);
+    console.log("hola");
+    Stories.update({_id: comment.idStory}, {$pull: { comments: {
+                                                      commentText: comment.commentText ,
+                                                      commentDate: comment.commentDate,
+                                                      owner: comment.owner,
+                                                      idStory: comment.idStory,
+                                                      userImageComment: comment.userImageComment,
+                                                      creatorNameComment: comment.creatorNameComment,
+
+
+
+                                                    }}});
+  }
+})
+
+//Need this package meteor add momentjs:moment
+Template.commentTemaplte.helpers({
+  dateRefactor:function(date){
+
+    return moment(date).format('MM-DD-YYYY HH:mm');
+  },
+  ownerComment:function(){
+      return this.owner === Meteor.userId();
+  }
 })
