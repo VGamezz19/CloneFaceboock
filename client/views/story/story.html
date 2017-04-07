@@ -43,9 +43,15 @@
 
                 <label>{{likeCount _id}}</label>
                 <div class="input-group">
+                  {{#if styleLike}}
                     <div class="input-group-btn">
-                        <button class="btn btn-default like">+1</button>
+                        <imput class="btn btn-default like fi glyphicon glyphicon-thumbs-up" style="margin-top: -1px;color: #333;background-color: #cad0e4;border-color: #adadad;"></imput>
                     </div>
+                  {{else}}
+                    <div class="input-group-btn">
+                        <button class="btn btn-default like fi glyphicon glyphicon-thumbs-up" style="margin-top: -1px"></button>
+                    </div>
+                  {{/if}}
                     <form  class ="comment-story">
                       <input class="form-control" name ="text" placeholder="Add a comment.." type="text">
                     </form>
@@ -78,8 +84,8 @@
             <a type="button" style ="float: right;margin-bottom: 0.4em;" class="delete-comment fi glyphicon glyphicon-remove"></a>
         {{/if}}
       </div>
-      <div class ="col-md-12 col-lg-12">
-        {{dateRefactor commentDate}}
+      <div class ="col-md-12 col-lg-12" style ="padding:0;">
+        <p style ="font-size: 0.8em;">{{dateRefactor commentDate}}</p>
       </div>
     </div>
   </div>

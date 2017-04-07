@@ -8,10 +8,16 @@
            <div class="panel-body">
              <p class="lead">{{fullname}}</p>
              <p>{{friendCount}} Friends</p>
-             <p><button class="btn btn-primary add-friend">Add Friend</button></p>
+
+             {{#if ownerPorfileDetails}}
+
+             {{else}}
+               <p><button class="btn btn-primary add-friend">Add Friend</button></p>
+             {{/if}}
+
              <p>
                 {{#each newFriends}}
-                    <a href="/profile/{{this.profile.username}}"><img src="{{this.profile.picture.thumbnail}}" height="28px" width="28px"></a>
+                    <a href="/profile/{{this.profile.login.username}}"><img src="{{this.profile.picture.thumbnail}}" height="28px" width="28px"></a>
                 {{/each}}
              </p>
            </div>

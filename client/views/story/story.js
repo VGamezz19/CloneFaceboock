@@ -60,12 +60,19 @@ Template.story.helpers({
     ownerStory:function(){
         return this.createdBy === Meteor.userId();
     },
-    /*commentStory:function(e){
-      var story = Blaze.getData(e.currentTarget);
-      var story = Stories.findOne({_id: storyId});
-      console.log("comment");
-      return story;
-    }*/
+
+    styleLike:function(){
+
+      var liker = Meteor.user();
+      var likeData = {name: liker.profile.name.first + " " + liker.profile.name.last};
+      var alreadyLiked = _.findWhere(this.likes, likeData);
+      if (! alreadyLiked) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+
     datestory:function(date) {
       return moment(date).format('MM-DD-YYYY HH:mm');
     },

@@ -71,6 +71,13 @@ Template.profileDetails.helpers({
     storyCount:function(){
         var username = Router.current().params.username;
         var user = Meteor.users.findOne({username:username});
+    },
+
+    ownerPorfileDetails: function(){
+      var username = Router.current().params.username;
+      var user = Meteor.users.findOne({username:username});
+
+      return user._id === Meteor.userId();
     }
 })
 
