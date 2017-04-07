@@ -15,7 +15,7 @@ Template.modal.events({
                 storyImage: null,
                 storyText: story,
                 creatorName: currentUser.profile.name.first + " " + currentUser.profile.name.last,
-                creatorUsername: currentUser.profile.username,
+                creatorUsername: currentUser.profile.login.username,
                 creatorThumbnail: currentUser.profile.picture.thumbnail,
                 createdForName: profileUser.profile.name.first + " " + profileUser.profile.name.last,
                 createdForUsername: profileUser.profile.username,

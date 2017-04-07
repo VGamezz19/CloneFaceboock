@@ -31,7 +31,7 @@ Template.story.events({
       if (commentText){
         //El creador del commentario
         var userOwner = Meteor.user();
-
+        console.log(userOwner);
         Stories.update({_id: story._id}, {$push:{comments: {
                                                    commentText: commentText,
                                                    commentDate: new Date(),

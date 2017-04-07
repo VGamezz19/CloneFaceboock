@@ -15,7 +15,7 @@ Template.profileFeed.events({
         var currentUser = Meteor.user();
         var story = $('textarea[name="new-post"]').val();
         if(story.length) {
-          
+
             Stories.insert({
                 createdBy: currentUser._id,
                 createdFor: profileUser._id,
@@ -23,7 +23,7 @@ Template.profileFeed.events({
                 storyImage: null,
                 storyText: story,
                 creatorName: currentUser.profile.name.first + " " + currentUser.profile.name.last,
-                creatorUsername: currentUser.profile.username,
+                creatorUsername: currentUser.profile.login.username,
                 creatorThumbnail: currentUser.profile.picture.thumbnail,
                 createdForName: profileUser.profile.name.first + " " + profileUser.profile.name.last,
                 createdForUsername: profileUser.profile.username,
