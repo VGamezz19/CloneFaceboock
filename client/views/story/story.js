@@ -39,6 +39,7 @@ Template.story.events({
                                                    idStory : story._id,
                                                    userImageComment : userOwner.profile.picture.thumbnail,
                                                    creatorNameComment : userOwner.profile.name.first,
+                                                   username : userOwner.profile.login.username
 
 
                                                 }}});

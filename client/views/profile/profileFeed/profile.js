@@ -26,7 +26,7 @@ Template.profileFeed.events({
                 creatorUsername: currentUser.profile.login.username,
                 creatorThumbnail: currentUser.profile.picture.thumbnail,
                 createdForName: profileUser.profile.name.first + " " + profileUser.profile.name.last,
-                createdForUsername: profileUser.profile.username,
+                createdForUsername: profileUser.profile.login.username,
                 createdForThumbnail: profileUser.profile.picture.thumbnail,
                 likes: [],
                 createdAt: new Date(),

@@ -12,7 +12,14 @@
              {{#if ownerPorfileDetails}}
 
              {{else}}
-               <p><button class="btn btn-primary add-friend">Add Friend</button></p>
+               {{#if friendAdded}}
+                 <p><button class="btn btn-default">You are friends</button></p>
+               {{else}}
+                 <!--{{#if requestedFriend}}
+                  <p><button class="btn btn-warning">Add Friend</button></p>
+                 {{/if}} -->
+                <p><button class="btn btn-primary add-friend">Add Friend</button></p>
+               {{/if}}
              {{/if}}
 
              <p>

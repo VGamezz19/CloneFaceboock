@@ -78,7 +78,37 @@ Template.profileDetails.helpers({
       var user = Meteor.users.findOne({username:username});
 
       return user._id === Meteor.userId();
-    }
+    },
+
+    friendAdded:function() {
+        var username = Router.current().params.username;
+        var user = Meteor.users.findOne({username:username});
+        var edge = UserEdges.find({$or: [{requester: user._id},{requestee: user._id}], status:"accepted"}).fetch();
+        console.log("user", user);
+        console.log("edge",edge);
+        if (edge[0].requester === user._id || edge[0].requestee === user._id) {
+          console.log("hola");
+          return true;
+        } else {
+          console.log("adios");
+          return false;
+        }
+    },
+
+    /*requestedFriend:function() {
+        var username = Router.current().params.username;
+        var user = Meteor.users.findOne({username:username});
+        var edge = UserEdges.find({$or: [{requester:  Meteor.userId()},{requestee:  Meteor.userId()}], status:"accepted"}).fetch();
+        console.log("user", user);
+        console.log("edge",edge);
+        if (edge[0].requestee === user._id) {
+
+          return true;
+        } else {
+          console.log("adios");
+          return false;
+        }
+    } */
 })
 
 
