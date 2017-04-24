@@ -79,11 +79,7 @@ Template.story.events({
 
 
 Template.story.helpers({
-  /**
-    * @summary anithing
-    * @isMethod true
-    * @locus Template.story.helpers
-    */
+
     status:function(){
         return this.createdFor === this.createdBy;
     },
