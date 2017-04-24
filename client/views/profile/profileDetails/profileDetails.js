@@ -96,7 +96,7 @@ Template.profileDetails.helpers({
     /*requestedFriend:function() {
         var username = Router.current().params.username;
         var user = Meteor.users.findOne({username:username});
-        var edge = UserEdges.find({$or: [{requester:  Meteor.userId()},{requestee:  Meteor.userId()}], status:"accepted"}).fetch();
+        var edge = UserEdges.find({$or: [{$and: [{requester: user._id}, {requestee: Meteor.userId()}]},{$and: [{requester:Meteor.userId()},{requestee: user._id}] }],status:"accepted"}).fetch();
         console.log("user", user);
         console.log("edge",edge);
         if (edge[0].requestee === user._id) {
